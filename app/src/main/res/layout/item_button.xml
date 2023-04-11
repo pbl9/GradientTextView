@@ -4,10 +4,15 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="20dp">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:textSize="20sp"/>
 
 </FrameLayout>

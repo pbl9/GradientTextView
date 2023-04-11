@@ -24,7 +24,7 @@ class GradientAdapter(val onOrientationChanged: (GradientDrawable.Orientation) -
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemView = layoutInflater.inflate(R.layout.item_gradient_text_view, parent, false)
+        val itemView = layoutInflater.inflate(R.layout.item_button, parent, false)
         return ViewHolder(itemView)
     }
 
