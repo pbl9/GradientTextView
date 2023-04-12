@@ -29,11 +29,6 @@ class GradientTextView @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        applyGradient()
-        super.onDraw(canvas)
-    }
-
     private fun applyGradient() {
         gradientFactory?.let { factory ->
             paint.shader = factory.createGradient(width.toFloat(), height.toFloat())
@@ -43,6 +38,7 @@ class GradientTextView @JvmOverloads constructor(
 
     fun setGradient(gradientDrawable: GradientDrawable) {
         gradientFactory = GradientFactory.from(gradientDrawable)
+        applyGradient()
         invalidate()
     }
 }
