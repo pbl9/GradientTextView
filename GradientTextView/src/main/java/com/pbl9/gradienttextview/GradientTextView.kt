@@ -14,13 +14,15 @@ class GradientTextView @JvmOverloads constructor(
 ) : AppCompatTextView(context, attrs, defStyle) {
 
 
-    private var gradientFactory: GradientFactory? =
-        context.obtainStyledAttributes(attrs, R.styleable.GradientTextView).use {
-            kotlin.runCatching { it.getDrawable(R.styleable.GradientTextView_gradient) }.getOrNull()
-        }?.takeIf { it is GradientDrawable && it.colors != null }?.let { it as? GradientDrawable }
-            ?.let {
-                GradientFactory.from(it)
-            }
+    private var gradientFactory: GradientFactory? = run {
+        val drawable = context.obtainStyledAttributes(attrs, R.styleable.GradientTextView).use {
+             it.getDrawable(R.styleable.GradientTextView_gradient)
+        }
+        val gradientDrawable = drawable as GradientDrawable?//throws ClassCastException
+        gradientDrawable?.let {
+            GradientFactory.from(it)
+        }
+    }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
