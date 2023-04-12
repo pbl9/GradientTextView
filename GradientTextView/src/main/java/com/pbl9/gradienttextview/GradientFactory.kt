@@ -22,14 +22,16 @@ data class RadialGradientParams(
 interface GradientFactory {
     fun createGradient(width: Float, height: Float): Shader
     companion object {
+        @Throws(IllegalStateException::class)
         fun from(gradientDrawable: GradientDrawable): GradientFactory {
+            val colors = gradientDrawable.colors ?: throw IllegalStateException("Provided GradientDrawable should have defined colors")
             return when(gradientDrawable.gradientType) {
                 GradientDrawable.RADIAL_GRADIENT -> RadialGradientFactory(
-                    gradientDrawable.colors!!,
+                    colors,
                     RadialGradientParams.from(gradientDrawable)
                 )
                 else -> LinearGradientFactory(
-                    gradientDrawable.colors!!,
+                    colors,
                     gradientDrawable.orientation
                 )
             }
